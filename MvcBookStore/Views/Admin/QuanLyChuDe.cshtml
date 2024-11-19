@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MvcBookStore.Models.CHUDE>
+
+@{
+    ViewBag.Title = "Quản Lý Chủ Đề";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản Lý Chủ Đề</h2>
+
+<p>
+    @Html.ActionLink("Thêm Chủ Đề", "ThemChuDe", "Admin", null, new { @class = "btn btn-primary mb-3" })
+</p>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().MaCD)</th>
+            <th>@Html.DisplayNameFor(model => model.First().TenChuDe)</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.MaCD)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TenChuDe)</td>
+                    <td>
+                        @Html.ActionLink("Sửa", "SuaChuDe", "Admin", new { id = item.MaCD }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Xóa", "XoaChuDe", "Admin", new { id = item.MaCD }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">Không có chủ đề nào.</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,250 @@
+﻿/* Bundle CSS */
+bundles.Add(new StyleBundle("~/Content/css").Include( "~/Content/bootstrap.css", "~/Content/site.css", "~/Content/myStyles.css", "~/Content/PagedList.css" ));
+/* Style cho phần tiêu đề */
+.title {
+    margin: 20px 0;
+    color: red;
+}
+
+/* Phần sách */
+.book-section {
+    text-align: center;
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+    /* Khi hover vào phần sách */
+    .book-section:hover {
+        transform: translateY(-5px); /* Di chuyển nhẹ lên trên */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Tăng độ đổ bóng */
+        background-color: #f9f9f9; /* Thay đổi màu nền nhẹ khi hover */
+    }
+
+/* Phần hình ảnh của sách */
+.book-picture {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s; /* Thêm hiệu ứng chuyển động cho ảnh */
+}
+
+/* Khi hover vào hình ảnh sách */
+.book-section:hover .book-picture {
+    transform: scale(1.05); /* Phóng to ảnh một chút khi hover */
+}
+
+/* Chỉnh lại body của trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Container đăng nhập */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Form đăng nhập */
+.login-form {
+    background-color: #34495e;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Tiêu đề của form */
+.form-title {
+    color: #ecf0f1;
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Các nhóm form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Label cho các trường nhập liệu */
+label {
+    display: block;
+    color: #ecf0f1;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Các trường nhập liệu */
+input.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    transition: background-color 0.3s;
+}
+
+    /* Khi focus vào trường nhập liệu */
+    input.form-control:focus {
+        background-color: #1abc9c;
+        outline: none;
+        color: #fff;
+    }
+
+/* Nút đăng nhập */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #1abc9c;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    /* Khi hover vào nút đăng nhập */
+    .btn-login:hover {
+        background-color: #16a085;
+    }
+
+/* Liên kết quên mật khẩu */
+.forgot-password {
+    color: #ecf0f1;
+    margin-top: 15px;
+}
+
+    /* Liên kết quên mật khẩu khi hover */
+    .forgot-password a {
+        color: #1abc9c;
+        text-decoration: none;
+    }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+/* Phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .pagination li {
+        margin: 0 5px;
+        list-style: none;
+    }
+
+    .pagination a, .pagination span {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #007bff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+        /* Khi hover vào phân trang */
+        .pagination a:hover {
+            background-color: #f0f0f0;
+        }
+
+    /* Khi trang được chọn trong phân trang */
+    .pagination .active span {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+/* Navbar Styles */
+.navbar-nav .nav-link {
+    color: #fff;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-item:hover {
+    background-color: #343a40;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #1abc9c;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}
+/* Sidebar container */
+.sidebar-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Style for the list */
+.list-group {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.list-group-item {
+    padding: 12px 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+    .list-group-item a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+    }
+
+    .list-group-item:hover {
+        background-color: #1abc9c;
+        color: white;
+    }
+
+    .list-group-item a:hover {
+        color: white;
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar-section {
+        margin-bottom: 15px;
+    }
+}

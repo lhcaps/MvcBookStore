@@ -1,0 +1,60 @@
+﻿@model MvcBookStore.Models.SACH
+@{
+    ViewBag.Title = "Sửa Sách";
+}
+
+<h2 class="text-center">Sửa Sách</h2>
+
+@using (Html.BeginForm("SuaSach", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <hr />
+
+        <!-- Tên sách -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Tensach, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tensach, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tensach, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Hình minh họa -->
+        <div class="form-group row">
+            @Html.Label("Hình minh họa", new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                <input type="file" name="Hinhminhoa" class="form-control" />
+            </div>
+        </div>
+
+        <!-- Dropdown Chủ Đề -->
+        <div class="form-group row">
+            @Html.Label("Chủ Đề", new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaCD", (SelectList)ViewBag.MaCD, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!-- Dropdown Nhà Xuất Bản -->
+        <div class="form-group row">
+            @Html.Label("Nhà Xuất Bản", new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("MaNXB", (SelectList)ViewBag.MaNXB, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!-- Nút Submit -->
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Quay lại danh sách sách -->
+<div class="text-center">
+    @Html.ActionLink("Quay lại danh sách", "QuanLySach", null, new { @class = "btn btn-secondary" })
+</div>

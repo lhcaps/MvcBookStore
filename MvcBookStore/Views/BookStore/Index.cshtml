@@ -1,0 +1,124 @@
+﻿@using MvcBookStore.Models
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<SACH>
+@{
+    ViewBag.Title = "Hôm nay đọc gì?";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h2 {
+        text-align: center;
+        font-size: 36px;
+        color: #1a73e8;
+        margin-bottom: 30px;
+    }
+
+    .book-section {
+        margin-bottom: 20px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background-color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .book-picture {
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+            list-style: none;
+        }
+
+        .pagination a, .pagination span {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+            .pagination a:hover {
+                background-color: #f0f0f0;
+            }
+
+        .pagination .active span {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+    .btn-view {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        .btn-view:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h2>Hôm nay đọc gì?</h2>
+
+<div class="row">
+    @foreach (var sach in Model)
+    {
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div class="card book-section">
+                <!-- Hình minh họa sách -->
+                <a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })">
+                    <img class="card-img-top book-picture" src="~/Images/@sach.Hinhminhoa" alt="Ảnh bìa sách">
+                </a>
+
+                <div class="card-body text-center">
+                    <!-- Tên sách và giá -->
+                    <h5 class="card-title">@sach.Tensach</h5>
+                    <p class="card-text">@String.Format("{0:C}", sach.Donggia)</p>
+
+                    <!-- Nút hành động -->
+                    <div class="d-flex justify-content-around">
+                        <!-- Nút Chi tiết -->
+                        <a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })" class="btn btn-primary">
+                            Chi tiết
+                        </a>
+
+                        <!-- Nút Thêm vào giỏ -->
+                        <a href="@Url.Action("ThemSanPhamVaoGio", "GioHang", new { MaSp = sach.Masach })" class="btn btn-success">
+                            Thêm vào giỏ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="pagination">
+    @Html.PagedListPager(
+        Model,
+        page => Url.Action("Index", new { page }),
+        new PagedListRenderOptions
+        {
+            DisplayPageCountAndCurrentLocation = true,
+            MaximumPageNumbersToDisplay = 5,
+            DisplayEllipsesWhenNotShowingAllPageNumbers = true
+        })
+</div>
+

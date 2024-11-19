@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - My Book Store</title>
+
+    <!-- Styles and Scripts -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header class="bg-dark text-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <!-- Logo -->
+                <a class="navbar-brand text-uppercase fw-bold text-white" href="@Url.Action("Index", "BookStore")">My Book Store</a>
+
+                <!-- Navigation Links -->
+                <nav class="d-flex align-items-center">
+                    <ul class="navbar-nav d-flex flex-row align-items-center">
+                        <!-- Admin -->
+                        <li class="nav-item mx-3">
+                            <a class="nav-link text-white" href="@Url.Action("Index", "Admin")">Admin</a>
+                        </li>
+
+                        <!-- Login/Logout -->
+                        @if (Session["Account"] != null)
+                        {
+                            var user = (MvcBookStore.Models.KHACHHANG)Session["Account"];
+                            if (user != null)
+                            {
+                                <li class="nav-item mx-3">
+                                    <a class="nav-link text-white" href="@Url.Action("ThongTin", "NguoiDung")">
+                                        @user.HoTenKH
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-white" href="@Url.Action("DangNhap", "NguoiDung")">Đăng Nhập</a>
+                            </li>
+                        }
+
+                        <!-- Shopping Cart -->
+                        <li class="nav-item mx-3">
+                            <div class="d-flex align-items-center">
+                                @Html.Action("GioHangPartial", "GioHang")
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content area -->
+    <main class="container mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-md-3 mb-4">
+                <section class="mb-3">
+                    @Html.Action("LayChuDe", "BookStore")
+                </section>
+                <section>
+                    @Html.Action("LayNhaXuatBan", "BookStore")
+                </section>
+            </aside>
+
+            <!-- Main content -->
+            <div class="col-md-9">
+                <!-- Banner -->
+                <section class="banner-area mb-4">
+                    <img class="img-fluid rounded" src="~/Images/banner.jpg" alt="Banner" />
+                </section>
+
+                <!-- Dynamic content -->
+                <section class="content-area">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p class="mb-0">&copy; @DateTime.Now.Year My Book Store. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

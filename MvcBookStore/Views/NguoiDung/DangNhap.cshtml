@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 class="text-center text-primary">ĐĂNG NHẬP</h2>
+<br />
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+        <!-- Hiển thị thông báo lỗi nếu có -->
+        @if (!string.IsNullOrEmpty(ViewBag.ThongBao))
+        {
+            <div class="alert alert-danger text-center">
+                @ViewBag.ThongBao
+            </div>
+        }
+
+        @using (Html.BeginForm("DangNhap", "NguoiDung", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                <label for="dangnhap">Tên đăng nhập:</label>
+                @Html.TextBox("TenDN", null, new { @class = "form-control", @id = "dangnhap", required = "required" })
+            </div>
+
+            <div class="form-group">
+                <label for="matkhau">Mật khẩu:</label>
+                @Html.Password("Matkhau", null, new { @class = "form-control", @id = "matkhau", required = "required" })
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">ĐĂNG NHẬP</button>
+        }
+    </div>
+
+</div>
+
+<div class="row justify-content-center text-center mt-4">
+    <!-- Liên kết đăng ký -->
+    <div class="col-md-12 mb-3">
+        <p>Bạn chưa có tài khoản? <a href="@Url.Action("DangKy", "NguoiDung")">Đăng ký ngay</a></p>
+    </div>
+
+    <!-- Liên kết đăng nhập dành cho admin -->
+    <div class="col-md-12">
+        <p><a href="@Url.Action("Login", "Admin")">Đăng nhập dành cho admin</a></p>
+    </div>
+</div>

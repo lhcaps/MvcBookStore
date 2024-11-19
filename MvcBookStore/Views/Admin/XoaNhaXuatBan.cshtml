@@ -1,0 +1,56 @@
+﻿@model MvcBookStore.Models.NHAXUATBAN
+
+@{
+    ViewBag.Title = "Xóa Nhà Xuất Bản";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">Xóa Nhà Xuất Bản</h2>
+
+    <h3 class="text-danger text-center">Are you sure you want to delete this publisher?</h3>
+
+    <div class="well">
+        <h4>Thông tin Nhà Xuất Bản</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-md-3">
+                @Html.DisplayNameFor(model => model.MaNXB)
+            </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.MaNXB)
+            </dd>
+
+            <dt class="col-md-3">
+                @Html.DisplayNameFor(model => model.TenNXB)
+            </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.TenNXB)
+            </dd>
+
+            <dt class="col-md-3">
+                @Html.DisplayNameFor(model => model.Diachi)
+            </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.Diachi)
+            </dd>
+
+            <dt class="col-md-3">
+                @Html.DisplayNameFor(model => model.DienjThoai)
+            </dt>
+            <dd class="col-md-9">
+                @Html.DisplayFor(model => model.DienjThoai)
+            </dd>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm("XoaNhaXuatBan", "Admin", FormMethod.Post, new { id = "deletePublisherForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions text-center">
+            <button type="submit" class="btn btn-danger btn-lg">Delete</button>
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary btn-lg">Back to List</a>
+        </div>
+    }
+</div>

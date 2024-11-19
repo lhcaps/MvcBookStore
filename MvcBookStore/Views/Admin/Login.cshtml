@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="login-form card p-4 shadow-sm">
+                <h2 class="form-title text-center">Đăng Nhập Admin</h2>
+
+                @if (ViewBag.ThongBao != null)
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.ThongBao
+                    </div>
+                }
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
+                <form method="post" action="@Url.Action("Login", "Admin")">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <label for="UserAdmin">Tên đăng nhập:</label>
+                        <input name="UserAdmin" type="text" id="UserAdmin" class="form-control" placeholder="Username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PassAdmin">Mật khẩu:</label>
+                        <input name="PassAdmin" type="password" id="PassAdmin" class="form-control" placeholder="Password" required>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <p class="forgot-password">
+                            <a href="#">Quên mật khẩu?</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-container {
+        margin-top: 100px;
+    }
+
+    .login-form {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+    }
+
+    .form-title {
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .forgot-password a {
+        font-size: 0.875rem;
+        color: #007bff;
+    }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+</style>

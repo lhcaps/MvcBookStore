@@ -1,0 +1,49 @@
+﻿@model MvcBookStore.Models.CHUDE
+
+@{
+    ViewBag.Title = "Sửa Chủ Đề";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">Sửa Chủ Đề</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <h4>Chủ Đề</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- Mã Chủ Đề -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.MaCD, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaCD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Tên Chủ Đề -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.TenChuDe, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Nút Lưu -->
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Quay lại danh sách chủ đề -->
+<div class="text-center">
+    @Html.ActionLink("Quay lại danh sách", "QuanLyChuDe", null, new { @class = "btn btn-secondary" })
+</div>

@@ -1,0 +1,103 @@
+﻿@model MvcBookStore.Models.SACH
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">THÔNG TIN CHI TIẾT SÁCH</h2>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            TÊN SÁCH:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Tensach)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            ĐƠN VỊ TÍNH:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Donvitinh)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            ĐƠN GIÁ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Donggia)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            MÔ TẢ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Mota)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            ẢNH BÌA:
+        </div>
+        <div class="col-md-9">
+            <img src="~/Images/@Model.Hinhminhoa" class="img-fluid" style="max-width: 150px;" />
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            CHỦ ĐỀ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            NHÀ XUẤT BẢN:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            NGÀY CẬP NHẬT:
+        </div>
+        <div class="col-md-9">
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-right font-weight-bold">
+            SỐ LƯỢNG BÁN:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Soluongban)
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <a href="@Url.Action("SuaSach", new { id = Model.Masach })" class="btn btn-warning btn-sm">ĐIỀU CHỈNH</a>
+            <a href="@Url.Action("Sach")" class="btn btn-secondary btn-sm">TRỞ VỀ</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .font-weight-bold {
+        font-weight: bold;
+    }
+</style>

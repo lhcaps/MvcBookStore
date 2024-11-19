@@ -1,0 +1,42 @@
+﻿@model MvcBookStore.Models.KHACHHANG
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Thông tin cá nhân</h2>
+
+    <!-- Hiển thị thông tin -->
+    <form action="@Url.Action("CapNhatThongTin", "NguoiDung")" method="post">
+        <div class="form-group mb-3">
+            <label for="HoTenKH">Họ tên:</label>
+            <input type="text" class="form-control" id="HoTenKH" name="HoTenKH" value="@Model.HoTenKH" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="TenDN">Tên đăng nhập:</label>
+            <input type="text" class="form-control" id="TenDN" name="TenDN" value="@Model.TenDN" readonly />
+        </div>
+        <div class="form-group mb-3">
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" />
+        </div>
+        <div class="form-group mb-3">
+            <label for="DienthoaiKH">Điện thoại:</label>
+            <input type="text" class="form-control" id="DienthoaiKH" name="DienthoaiKH" value="@Model.DienthoaiKH" />
+        </div>
+
+        <!-- Nút Thay đổi thông tin -->
+        <button type="submit" class="btn btn-primary">Thay đổi thông tin</button>
+
+        <!-- Nút Đăng xuất -->
+        <a href="@Url.Action("DangXuat", "NguoiDung")" class="btn btn-danger ml-3">Đăng xuất</a>
+    </form>
+
+    <!-- Thông báo thành công -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mt-3">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+</div>

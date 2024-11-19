@@ -1,0 +1,130 @@
+﻿@using MvcBookStore.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+<p>
+    @Html.ActionLink("THÊM MỚI", "ThemSach", null, new { @class = "btn btn-primary btn-lg", @role = "button" })
+</p>
+<table class="table" border="1">
+    <tr>
+        <th>
+            TÊN SÁCH
+        </th>
+        <th>
+            GIÁ BÁN
+        </th>
+        <th>
+            MÔ TẢ
+        </th>
+        <th>
+            ẢNH BÌA
+        </th>
+        <th>
+            CHỦ ĐỀ
+        </th>
+        <th>
+            NHÀ XUẤT BẢN
+        </th>
+
+        <th>
+            NGÀY CẬP NHẬT
+        </th>
+        <th>
+            SỐ LƯỢNG BÁN
+        </th>
+        <th style="width: 150px;"></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Donggia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mota)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Hinhminhhoa)*@
+                <img src="~/Images/@item.Hinhminhoa" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluongban)
+            </td>
+            <td style="width: 150px;">
+                <div class="d-flex flex-column">
+                    @Html.ActionLink("Sửa", "SuaSach", new { id = item.Masach }, new { @class = "btn btn-warning mb-2" })
+                    @Html.ActionLink("CHI TIẾT", "ChiTietSach", new { id = item.Masach }, new { @class = "btn btn-info mb-2" })
+                    @Html.ActionLink("Xóa", "XoaSach", new { id = item.Masach }, new
+                    {
+                        @class = "btn btn-danger",
+                        onclick = "return confirm('Bạn có chắc chắn muốn xóa sách này không?');"
+                    })
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+<!-- Thêm mã phân trang -->
+<br />
+<div class="text-center mb-3">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+</div>
+<div class="MenuTrang text-center">
+    <ul class="pagination justify-content-center">
+        <!-- Previous Button -->
+        <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Sach", new { page = Model.PageNumber - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <!-- Page Numbers -->
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Sach", new { page = i })">@i</a>
+            </li>
+        }
+
+        <!-- Next Button -->
+        <li class="page-item @(Model.PageNumber == Model.PageCount ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Sach", new { page = Model.PageNumber + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<style>
+    td, th {
+        text-align: center;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        pointer-events: none;
+        color: #6c757d; /* Disabled link color */
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+</style>
+</style><!-- Kết thúc -->

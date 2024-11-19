@@ -1,0 +1,36 @@
+﻿@using MvcBookStore.Models
+@model SACH
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center my-4">THÔNG TIN CHI TIẾT SÁCH</h2>
+
+<div class="row">
+    <!-- Book Image Section -->
+    <div class="col-md-6 mb-4">
+        <img class="img-fluid rounded" src="~/Images/@Model.Hinhminhoa" alt="Image of @Model.Tensach">
+    </div>
+
+    <!-- Book Details Section -->
+    <div class="col-md-6">
+        <h3>@Model.Tensach</h3>
+        <p class="lead text-justify">
+            <span class="font-weight-bold">Mô tả:</span> @Model.Mota
+        </p>
+        <p class="price">
+            <span class="font-weight-bold">Giá bán: </span>
+            <span class="text-danger" style="font-size: 32px;">
+                @String.Format("{0:0.00}", Model.Donggia) VNĐ
+            </span>
+        </p>
+
+        <!-- Button to Add to Cart -->
+        <div class="mt-4">
+            <a class="btn btn-primary btn-lg" href="@Url.Action("ThemSanPhamVaoGio", "GioHang", new { MaSP = Model.Masach })">
+                <i class="bi bi-cart-plus"></i> ĐẶT MUA
+            </a>
+        </div>
+    </div>
+</div>

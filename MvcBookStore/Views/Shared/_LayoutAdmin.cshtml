@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Navigation Bar with Dark Theme -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <!-- Brand Link -->
+                <a class="navbar-brand" href="@Url.Action("Index", "BookStore")">My Book Store</a>
+
+                <!-- Toggler Button for Mobile Views -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Home link -->
+                        <li class="nav-item">
+                            @Html.ActionLink("Trang Chủ", "Index", "BookStore", null, new { @class = "nav-link" })
+                        </li>
+
+                        <!-- Admin Links -->
+                        <li class="nav-item">
+                            @Html.ActionLink("Quản Lý Chủ Đề", "QuanLyChuDe", "Admin", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Quản Lý NXB", "QuanLyNhaXuatBan", "Admin", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Quản Lý Sách", "Sach", "Admin", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container mt-4">
+            @RenderBody() <!-- Render the content of the current view -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

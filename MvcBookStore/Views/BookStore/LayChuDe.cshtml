@@ -1,0 +1,24 @@
+﻿@using MvcBookStore.Models
+@model IEnumerable<CHUDE>
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="display-4">CHỦ ĐỀ SÁCH</h2>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+                @foreach (var chude in Model)
+                {
+                    <li class="list-group-item list-group-item-action">
+                        <a href="@Url.Action("SPTheoChuDe", "BookStore", new { id = chude.MaCD })" class="text-decoration-none text-dark">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold">@chude.TenChuDe</span>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

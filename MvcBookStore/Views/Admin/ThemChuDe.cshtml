@@ -1,0 +1,37 @@
+﻿@model MvcBookStore.Models.CHUDE
+
+@{
+    ViewBag.Title = "Thêm Chủ Đề";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">Thêm Chủ Đề</h2>
+
+@using (Html.BeginForm("ThemChuDe", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <hr />
+        <h4 class="text-center">Chủ Đề</h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- Tên Chủ Đề -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.TenChuDe, new { @class = "col-md-2 col-form-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Nút Submit và Quay lại -->
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-md-10 text-center">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại", "QuanLyChuDe", "Admin", null, new { @class = "btn btn-secondary" })
+            </div>
+        </div>
+    </div>
+}

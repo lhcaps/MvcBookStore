@@ -1,0 +1,42 @@
+﻿@model MvcBookStore.Models.CHUDE
+
+@{
+    ViewBag.Title = "Xóa Chủ Đề";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">Xóa Chủ Đề</h2>
+
+    <h3 class="text-danger text-center">Bạn có chắc chắn muốn xóa chủ đề này không?</h3>
+
+    <div class="well">
+        <h4>Thông tin Chủ Đề</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.MaCD)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.MaCD)
+            </dd>
+            <dt class="col-md-2">
+                @Html.DisplayNameFor(model => model.TenChuDe)
+            </dt>
+            <dd class="col-md-10">
+                @Html.DisplayFor(model => model.TenChuDe)
+            </dd>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm("XoaChuDe", "Admin", FormMethod.Post, new { id = "xoaChuDeForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="MaCD" value="@Model.MaCD" />
+
+        <div class="form-actions text-center">
+            <button type="submit" class="btn btn-danger btn-lg">Xóa</button>
+            <a href="@Url.Action("QuanLyChuDe", "Admin")" class="btn btn-secondary btn-lg">Quay lại danh sách</a>
+        </div>
+    }
+</div>
